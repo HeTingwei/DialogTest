@@ -21,18 +21,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    //ProgressDialog
-    public void progressDialogClick(View v) {
-        //官网上是说Android 8.0已经弃用，但实际在8.0模拟器运行，没有发现问题。官网没有给出效果相同的直接代替的类
-        //举例用ProgressBar替换
-        ProgressDialog progressDialog = new ProgressDialog
-                (MainActivity.this);
-        progressDialog.setTitle("对话框上部的字");
-        progressDialog.setMessage("正在加载.....");
-        progressDialog.setCancelable(true);//如果是false，点击其他位置或者返回键无效，默认为true
-        progressDialog.show();
-    }
-
     //AlertDialog，在android老版本与新版本之间，下面的按钮位置有很大不同
     public void alertDialogClick(View v) {
         AlertDialog.Builder dialog = new AlertDialog.
@@ -68,6 +56,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         dialog.show();
+    }
+
+    //ProgressDialog
+    public void progressDialogClick(View v) {
+        //官网上是说Android 8.0已经弃用，但实际在8.0模拟器运行，没有发现问题。官网没有给出效果相同的直接代替的类
+        //举例用ProgressBar替换
+        ProgressDialog progressDialog = new ProgressDialog
+                (MainActivity.this);
+        progressDialog.setTitle("对话框上部的字");
+        progressDialog.setMessage("正在加载.....");
+        progressDialog.setCancelable(true);//如果是false，点击其他位置或者返回键无效，默认为true
+        progressDialog.show();
+        //progressDialog.dismiss();此句让progressDialog消失
     }
 
     //自定义布局的对话框，响应其中的按钮点击事件
