@@ -57,6 +57,7 @@ ProgressDialog progressDialog = new ProgressDialog
         progressDialog.setMessage("正在加载.....");
         progressDialog.setCancelable(true);//如果是false，点击其他位置或者返回键无效，默认为true
         progressDialog.show();
+        //progressDialog.dismiss();//此句让progressDialog消失
 ```
 ProgressDialog在android 8.0 模拟器上运行效果：<br>
 
