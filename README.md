@@ -1,9 +1,8 @@
 # Android 对话框相关总结
 对话框相关总结，包括AlertDialog,ProgressDialog和自定义对话框
-常用的对话框相关的有：AlertDialog,ProgressDialog，自定义的对话框（自定义的对话框的长宽设置需要注意），还有任意位置在其他应用上都可以弹出的对话框。其中任意位置在其他应用上都可以弹出的对话框见另一篇博文：[点击跳转](http://blog.csdn.net/htwhtw123/article/details/71758817)该博文的demo放在gihub上：[点击跳转](https://github.com/HeTingwei/DialogTest)
+常用的对话框相关的有：AlertDialog,ProgressDialog，自定义的对话框（自定义的对话框的长宽设置需要注意），还有任意位置在其他应用上都可以弹出的对话框。其中任意位置在其他应用上都可以弹出的对话框见另一篇博文：[点击跳转](http://blog.csdn.net/htwhtw123/article/details/71758817)。该demo的详细讲解同样可以看博文：[点击跳转](http://blog.csdn.net/htwhtw123/article/details/77488040)
 
-1.纯粹的 AlertDialog
---------------
+## 1.纯粹的 AlertDialog
 AlertDialog对话框是非常常用的对话框，一般又一个头部，中间的说明文字和下面的按钮组成。按钮的数量可以是：1、2或3。注意的是，下面按钮中，最前面到的那个按钮，在Android的不同版本中，位置是不同的。
 下面给出代码：
 
@@ -42,13 +41,12 @@ AlertDialog对话框是非常常用的对话框，一般又一个头部，中间
         });
         dialog.show();
 ```
-在Android 8.0 模拟器上运行效果：
+<br>
+AlertDialog在android 8.0 模拟器上运行效果：<br>
 
-![这里写图片描述](http://img.blog.csdn.net/20170822214229293?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHR3aHR3MTIz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![AlertDialog](https://github.com/HeTingwei/DialogTest/blob/master/doc/test1.gif)
 
-
-2. ProgressDialog
------------------
+## 2. ProgressDialog
 虽然，ProgressDialog官方在Androidd 8.0中已经弃用它了：“This class was deprecated in API level 26.“，但是实际用Android 8.0模拟器运行并没有出现问题。而且官网没有给出效果相同的直接代替的类。只是建议用别的东西代替，如ProgressBar。
 下面给出代码：
 
@@ -59,12 +57,13 @@ ProgressDialog progressDialog = new ProgressDialog
         progressDialog.setMessage("正在加载.....");
         progressDialog.setCancelable(true);//如果是false，点击其他位置或者返回键无效，默认为true
         progressDialog.show();
+        //progressDialog.dismiss();//此句让progressDialog消失
 ```
-在Android 8.0 模拟器上运行效果：
-![这里写图片描述](http://img.blog.csdn.net/20170822214314274?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHR3aHR3MTIz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+ProgressDialog在android 8.0 模拟器上运行效果：<br>
 
-3. 自定义对话框
----------
+![ProgressDialog](https://github.com/HeTingwei/DialogTest/blob/master/doc/test2.gif)
+
+## 3. 自定义对话框
    自定义对话框，就是自己写一个布局，让对话框加载布局，并且能监听这个布局里面的点击事件，并且对话框可以响应点击消失。
 首先写一个对话框的布局：my_dialog.xml
 
@@ -104,7 +103,7 @@ ProgressDialog progressDialog = new ProgressDialog
 
 </LinearLayout>
 ```
-
+<br>
 
 设计对话框的style,目的是去控制对话框长宽，并且避免出现一些上部阴影，下面是添加在styles.xml中的代码，其中windowIsFloating让java代码部分控制大小生效，windowNoTitle避免出现一些上部阴影：
 
@@ -160,5 +159,8 @@ ProgressDialog progressDialog = new ProgressDialog
         alert.show();
     }
 ```
-在Android 8.0 模拟器上运行效果：
-![这里写图片描述](http://img.blog.csdn.net/20170822214341915?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHR3aHR3MTIz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+自定义对话框在android 8.0 模拟器上运行效果：<br>
+
+![自定义对话框](https://github.com/HeTingwei/DialogTest/blob/master/doc/test3.gif)
+
+
