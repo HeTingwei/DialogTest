@@ -1,6 +1,7 @@
 package com.xingyi.test;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -74,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
     //自定义布局的对话框，响应其中的按钮点击事件
     public void myClick(View v) {
         //获取自定义布局view实例
-        View layout = LayoutInflater.from(this).inflate(R.layout.my_dialog, null);
+        final Context context=this;
+        View layout = LayoutInflater.from(context).inflate(R.layout.my_dialog, null);
         //在对话框里加载布局：setView()方法
         final AlertDialog.Builder dialog = new AlertDialog.
                 Builder(MainActivity.this,R.style.style_dialog);
@@ -99,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //这里写左按钮点击响应事件
-                Toast.makeText(MainActivity.this, "左按钮", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "左按钮", Toast.LENGTH_SHORT).show();
                 alert.dismiss();//让对话框消失
             }
         });
@@ -108,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //这里写右按钮点击响应事件
-                Toast.makeText(MainActivity.this, "右按钮", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "右按钮", Toast.LENGTH_SHORT).show();
                 alert.dismiss();//让对话框消失
             }
         });
