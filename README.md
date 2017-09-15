@@ -1,6 +1,6 @@
 # Android 对话框相关总结
 对话框相关总结，包括AlertDialog,ProgressDialog和自定义对话框
-常用的对话框相关的有：AlertDialog,ProgressDialog，自定义的对话框（自定义的对话框的长宽设置需要注意），还有任意位置在其他应用上都可以弹出的对话框。其中任意位置在其他应用上都可以弹出的对话框见另一篇博文：[点击跳转](http://blog.csdn.net/htwhtw123/article/details/71758817)。该demo的详细讲解同样可以看博文：[点击跳转](http://blog.csdn.net/htwhtw123/article/details/77488040)
+常用的对话框相关的有：AlertDialog,ProgressDialog，自定义的对话框（自定义的对话框的长宽设置需要注意），还有任意位置在其他应用上都可以弹出的对话框。其中任意位置在其他应用上都可以弹出的对话框见另一篇博文：[点击跳转](http://blog.csdn.net/htwhtw123/article/details/71758817)。该demo的详细讲解同样可以看博文：[点击跳转](http://blog.csdn.net/htwhtw123/article/details/77488040)只有“将事件传递回对话框的宿主”的例子在module:"passEventToHost"里，其他都在dialog里。
 
 ## 1.纯粹的 AlertDialog
 AlertDialog对话框是非常常用的对话框，一般又一个头部，中间的说明文字和下面的按钮组成。按钮的数量可以是：1、2或3。注意的是，下面按钮中，最前面到的那个按钮，在Android的不同版本中，位置是不同的。
