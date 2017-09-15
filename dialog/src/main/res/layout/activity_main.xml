@@ -23,7 +23,7 @@
 
     <Button
         android:onClick="myClick"
-        android:text="自定义布局对话框"
+        android:text="自定义布局对话框（可定义大小）"
         android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
