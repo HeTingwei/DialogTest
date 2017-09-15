@@ -28,6 +28,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <Button
+        android:text="单选列表对话框"
+        android:onClick="radioListClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:text="多选列表对话框"
+        android:onClick="multipleListClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
 

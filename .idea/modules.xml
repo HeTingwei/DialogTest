@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DialogTest.iml" filepath="$PROJECT_DIR$/DialogTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/dialog/dialog.iml" filepath="$PROJECT_DIR$/dialog/dialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/passEventToHost/passEventToHost.iml" filepath="$PROJECT_DIR$/passEventToHost/passEventToHost.iml" />
     </modules>
   </component>
 </project>

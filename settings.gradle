@@ -1,1 +1,1 @@
-include ':dialog'
+include ':dialog', ':passEventToHost'

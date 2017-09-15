@@ -1,7 +1,6 @@
 package com.xingyi.test;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -14,12 +13,19 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class MainActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     //AlertDialog，在android老版本与新版本之间，下面的按钮位置有很大不同
@@ -72,14 +78,12 @@ public class MainActivity extends AppCompatActivity {
         //progressDialog.dismiss();此句让progressDialog消失
     }
 
-    //自定义布局的对话框，响应其中的按钮点击事件
-    public void myClick(View v) {
-        //获取自定义布局view实例
-        final Context context=this;
-        View layout = LayoutInflater.from(context).inflate(R.layout.my_dialog, null);
+    //自定义对话框
+    public void myClick(View v){
+        View layout = LayoutInflater.from(this).inflate(R.layout.my_dialog, null);
         //在对话框里加载布局：setView()方法
         final AlertDialog.Builder dialog = new AlertDialog.
-                Builder(MainActivity.this,R.style.style_dialog);
+                Builder(this,R.style.style_dialog);
         dialog.setCancelable(false)//如果是false，点击其他位置或者返回键无效，这个地方默认为true
                 .setView(layout);//这里加载布局
         final AlertDialog alert = dialog.create();
@@ -101,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //这里写左按钮点击响应事件
-                Toast.makeText(context, "左按钮", Toast.LENGTH_SHORT).show();
-                alert.dismiss();//让对话框消失
+                Toast.makeText(MainActivity.this, "左", Toast.LENGTH_SHORT).show();
+                alert.dismiss();
             }
         });
 
@@ -110,11 +114,77 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //这里写右按钮点击响应事件
-                Toast.makeText(context, "右按钮", Toast.LENGTH_SHORT).show();
-                alert.dismiss();//让对话框消失
+                Toast.makeText(MainActivity.this, "右", Toast.LENGTH_SHORT).show();
+                alert.dismiss();
             }
         });
         alert.show();
     }
+
+    //单选列表对话框
+    public void radioListClick(View v){
+        String[] arr={"第一项","第二项","第三项"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("单选列表对话框")
+                .setItems(arr, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // which是点击列表位置
+                        Toast.makeText(MainActivity.this, which+"", Toast.LENGTH_SHORT).show();
+                    }
+                });
+         builder.create().show();
+    }
+
+    List <String>mSelectedItems;//用于多选列表对话框选择项的暂时存储
+
+    //多选列表对话框
+    public void multipleListClick(View v){
+        String[] arr={"第一项","第二项","第三项"};
+        mSelectedItems = new ArrayList();  //用来存放被选中的项
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // Set the dialog title
+        builder.setTitle("多选列表对话框")
+                // Specify the list array, the items to be selected by default (null for none),
+                // and the listener through which to receive callbacks when items are selected
+                .setMultiChoiceItems(arr, null,
+                        new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which,
+                                                boolean isChecked) {
+                                if (isChecked) {
+                                    // 如果选择一项，那么在选定的项中添加此项
+                                    mSelectedItems.add(which+"");
+                                } else if (mSelectedItems.contains(which)) {
+                                    // 如果取消选择，那么在选定的项中移除此项
+                                    mSelectedItems.remove(Integer.valueOf(which));
+                                }
+                            }
+                        })
+                // Set the action buttons
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        //确定
+                        String result="";
+                        for(String str:mSelectedItems){
+                            result+=str;
+                        }
+                        //这里输出被选中项
+                        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        //取消
+                    }
+                });
+
+         builder.create().show();
+    }
+
+
+
+
 
 }
