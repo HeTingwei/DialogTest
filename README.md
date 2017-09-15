@@ -1,6 +1,6 @@
 # Android 对话框相关总结
 对话框相关总结，包括AlertDialog,ProgressDialog和自定义对话框
-常用的对话框相关的有：AlertDialog,ProgressDialog，自定义的对话框（自定义的对话框的长宽设置需要注意），还有任意位置在其他应用上都可以弹出的对话框。其中任意位置在其他应用上都可以弹出的对话框见另一篇博文：[点击跳转](http://blog.csdn.net/htwhtw123/article/details/71758817)。该demo的详细讲解同样可以看博文：[点击跳转](http://blog.csdn.net/htwhtw123/article/details/77488040)
+常用的对话框相关的有：AlertDialog,ProgressDialog，自定义的对话框（自定义的对话框的长宽设置需要注意），还有任意位置在其他应用上都可以弹出的对话框。其中任意位置在其他应用上都可以弹出的对话框见另一篇博文：[点击跳转](http://blog.csdn.net/htwhtw123/article/details/71758817)。该demo的详细讲解同样可以看博文：[点击跳转](http://blog.csdn.net/htwhtw123/article/details/77488040)只有“将事件传递回对话框的宿主”的例子在module:"passEventToHost"里，其他都在dialog里。
 
 ## 1.纯粹的 AlertDialog
 AlertDialog对话框是非常常用的对话框，一般又一个头部，中间的说明文字和下面的按钮组成。按钮的数量可以是：1、2或3。注意的是，下面按钮中，最前面到的那个按钮，在Android的不同版本中，位置是不同的。
@@ -44,7 +44,7 @@ AlertDialog对话框是非常常用的对话框，一般又一个头部，中间
 <br>
 AlertDialog在android 8.0 模拟器上运行效果：<br>
 
-![AlertDialog](https://github.com/HeTingwei/DialogTest/blob/master/doc/test1.gif)
+![AlertDialog](https://github.com/HeTingwei/DialogTest/blob/master/doc/dialog1.gif)
 
 ## 2. ProgressDialog
 虽然，ProgressDialog官方在Androidd 8.0中已经弃用它了：“This class was deprecated in API level 26.“，但是实际用Android 8.0模拟器运行并没有出现问题。而且官网没有给出效果相同的直接代替的类。只是建议用别的东西代替，如ProgressBar。
@@ -61,7 +61,7 @@ ProgressDialog progressDialog = new ProgressDialog
 ```
 ProgressDialog在android 8.0 模拟器上运行效果：<br>
 
-![ProgressDialog](https://github.com/HeTingwei/DialogTest/blob/master/doc/test2.gif)
+![ProgressDialog](https://github.com/HeTingwei/DialogTest/blob/master/doc/dialog2.gif)
 
 ## 3. 自定义对话框
    自定义对话框，就是自己写一个布局，让对话框加载布局，并且能监听这个布局里面的点击事件，并且对话框可以响应点击消失。
@@ -161,6 +161,77 @@ ProgressDialog在android 8.0 模拟器上运行效果：<br>
 ```
 自定义对话框在android 8.0 模拟器上运行效果：<br>
 
-![自定义对话框](https://github.com/HeTingwei/DialogTest/blob/master/doc/test3.gif)
+![自定义对话框](https://github.com/HeTingwei/DialogTest/blob/master/doc/dialog3.gif)
 
 
+
+## 4.单选列表对话框
+
+由于列表出现在对话框的内容区域，因此对话框无法同时显示消息和列表，通过 setTitle() 为对话框设置标题。要想指定列表项，调用setItems() 来传递一个数组。或者，也可以使用 setAdapter() 指定一个列表。 这样一来，您就可以使用 ListAdapter 以动态数据（如来自数据库的数据）支持列表。<br>
+```
+ String[] arr={"第一项","第二项","第三项"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("单选列表对话框")
+                .setItems(arr, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // which是点击列表位置
+                        Toast.makeText(MainActivity.this, which+"", Toast.LENGTH_SHORT).show();
+                    }
+                });
+         builder.create().show();
+         
+```
+效果如下：<br>
+![单选列表](https://github.com/HeTingwei/DialogTest/blob/master/doc/dialog4.gif)
+## 5.多选列表对话框
+
+需要定义一个List对象存储选定内容，在点击确定时读取。依靠setMultiChoiceItems()方法实现多选列表对话框。
+```
+List <String>mSelectedItems;//用于多选列表对话框选择项的暂时存储
+
+
+String[] arr={"第一项","第二项","第三项"};
+        mSelectedItems = new ArrayList();  //用来存放被选中的项
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // Set the dialog title
+        builder.setTitle("多选列表对话框")
+                // Specify the list array, the items to be selected by default (null for none),
+                // and the listener through which to receive callbacks when items are selected
+                .setMultiChoiceItems(arr, null,
+                        new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which,
+                                                boolean isChecked) {
+                                if (isChecked) {
+                                    // 如果选择一项，那么在选定的项中添加此项
+                                    mSelectedItems.add(which+"");
+                                } else if (mSelectedItems.contains(which)) {
+                                    // 如果取消选择，那么在选定的项中移除此项
+                                    mSelectedItems.remove(Integer.valueOf(which));
+                                }
+                            }
+                        })
+                // Set the action buttons
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        //确定
+                        String result="";
+                        for(String str:mSelectedItems){
+                            result+=str;
+                        }
+                        //这里输出被选中项
+                        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        //取消
+                    }
+                });
+
+         builder.create().show();
+```
+效果如下：<br>
+![多选列表](https://github.com/HeTingwei/DialogTest/blob/master/doc/dialog5.gif)
