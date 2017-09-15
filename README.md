@@ -8,11 +8,10 @@
 ## 2. ProgressDialog
 ![ProgressDialog](https://github.com/HeTingwei/DialogTest/blob/master/doc/dialog2.gif)
 ## 3. 自定义对话框（可调整大小）
-![自定义对话框](https://github.com/HeTingwei/DialogTest/blob/master/doc/dialog3.gif)
+![自定义对话框 可调整大小](https://github.com/HeTingwei/DialogTest/blob/master/doc/dialog3.gif)
 ## 4. 自定义对话框（不可调整大小，但简单）
-![自定义对话框](https://github.com/HeTingwei/DialogTest/blob/master/doc/dialogX.gif)
-## 5.单选列表对话框
-<br>
-![单选列表](https://github.com/HeTingwei/DialogTest/blob/master/doc/dialog4.gif)
-## 6.多选列表对话框
-![多选列表](https://github.com/HeTingwei/DialogTest/blob/master/doc/dialog5.gif)
+![自定义对话框 b不可调整大小](https://github.com/HeTingwei/DialogTest/blob/master/doc/dialogX.gif)
+## 5. 单选列表对话框
+![单选列表对话框](https://github.com/HeTingwei/DialogTest/blob/master/doc/dialog4.gif)
+## 6. 多选列表对话框
+![多选列表对话框](https://github.com/HeTingwei/DialogTest/blob/master/doc/dialog5.gif)
