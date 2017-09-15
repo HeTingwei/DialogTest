@@ -233,5 +233,5 @@ String[] arr={"第一项","第二项","第三项"};
 
          builder.create().show();
 ```
-效果如下：
+效果如下：<br>
 ![多选列表](https://github.com/HeTingwei/DialogTest/blob/master/doc/dialog5.gif)
