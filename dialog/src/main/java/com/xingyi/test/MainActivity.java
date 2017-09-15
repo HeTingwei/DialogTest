@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         //progressDialog.dismiss();此句让progressDialog消失
     }
 
-    //自定义对话框
+    //自定义对话框(可定义对话框大小)(比较麻烦)
     public void myClick(View v){
         View layout = LayoutInflater.from(this).inflate(R.layout.my_dialog, null);
         //在对话框里加载布局：setView()方法
@@ -119,6 +119,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         alert.show();
+    }
+
+    //自定义对话框（不可定义大小：对话框始终在宽度上铺满屏幕,高度始终是Wrap_content）(比较简单)
+    public void myClick2(View v){
+        MyDialog2 dialog = new MyDialog2();
+        dialog.show(getFragmentManager(),"TAG");
     }
 
     //单选列表对话框

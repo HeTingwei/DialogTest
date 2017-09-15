@@ -29,6 +29,13 @@
         android:layout_height="wrap_content"/>
 
     <Button
+        android:onClick="myClick2"
+        android:text="自定义布局对话框（不可定义大小）"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
         android:text="单选列表对话框"
         android:onClick="radioListClick"
         android:layout_width="match_parent"
